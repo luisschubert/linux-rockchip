@@ -6444,6 +6444,12 @@ static int rkcif_sanity_check_fmt(struct rkcif_stream *stream,
 		crop = (struct v4l2_rect *)s_crop;
 	else
 		crop = &stream->crop[CROP_SRC_ACT];
+		crop->width = input.width;
+		crop->height = input.height;
+		crop->left  = 0;
+		crop->top = 0;
+	printk("crop->width: %d crop->height: %d crop->left:%d crop->top: %d\r\n",
+		crop->width,crop->height,crop->left, crop->top);
 
 	if (crop->width + crop->left > input.width ||
 	    crop->height + crop->top > input.height) {
